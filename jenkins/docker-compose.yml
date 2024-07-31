@@ -1,14 +1,14 @@
 version: '3'
 services:
   jenkins_master:
-    container_name: jenkins_master
-    build: ./master
+    image: jenkin-master
+    restart: always
+    build: .
     ports:
       - 8080:8080
-      - 50000:50000
     volumes:
-      - jenkins_data:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+      - jenkins_home:/var/jenkins_home
 
-  jenkins_data:
-    container_name: jenkins_data
-    build: ./data
+volumes:
+  jenkins_home:
